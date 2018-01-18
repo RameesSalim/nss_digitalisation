@@ -136,7 +136,7 @@ iframe {
 
 .row.header {
   color: #ffffff;
-  background: #6c7ae0;
+  background: #666666;
 }
 
 @media screen and (max-width: 768px) {
@@ -227,7 +227,10 @@ iframe {
   background-color: #ececff;
   cursor: pointer;
 }
-
+.row.header:hover {
+  background-color: #a8a8a8;
+  cursor: pointer;
+}
 @media (max-width: 768px) {
   .row {
     border-bottom: 1px solid #f2f2f2;

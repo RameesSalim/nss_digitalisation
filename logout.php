@@ -7,6 +7,7 @@ $con = mysqli_connect("localhost","root","admin","NSS");
 		$_SESSION['username']= null;
 		$_SESSION['password']= null;
 		$_SESSION['flag']=0;
+		session_destroy();
 
 
 if(!isset($_SESSION['username']))

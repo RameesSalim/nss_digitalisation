@@ -1,7 +1,56 @@
 <!DOCTYPE html>
 <?php 
 session_start();
-$_SESSION['username']=null;
+?>
+d
+<!-- PHP Code  -->
+<?php
+ob_start();
+
+$con = mysqli_connect("localhost","root","admin","NSS");
+
+
+// Check connection
+
+
+if(isset($_POST['login']))
+{
+$username=$_POST['username'];
+$password=$_POST['pass'];
+
+$username=stripcslashes($username);
+$password=stripcslashes($password);
+
+$username=mysqli_real_escape_string($con,$username);
+$password=mysqli_real_escape_string($con,$password);
+
+
+		$result= mysqli_query($con,"SELECT * FROM `login` WHERE `username` ='$username' AND `password`='$password'");
+
+	$row=mysqli_fetch_array($result);
+	if($row['username'] != $username && $row['password'] != $password)
+	{
+		header("Location: index.php");
+		$error5 = array("Your username or password was incorrect.");
+
+
+	}
+	elseif($row['username'] == $username && $row['password'] == $password)
+	{
+		$_SESSION['username']= $row['username'];
+		$_SESSION['password']= $row['password'];
+		header("Location: digit.php");
+
+	}
+	else
+	{
+		header("Location: index.php");
+		$error5 = array("Your username or password was incorrect.");
+
+
+	}
+}
+
 ?>
 <html lang="en">
 <head>
@@ -38,7 +87,7 @@ $_SESSION['username']=null;
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w" action="process.php" method="POST">
+				<form class="login100-form validate-form flex-sb flex-w" action="" method="POST">
 					<span class="login100-form-title p-b-51">						Login
 					</span>
 
@@ -58,19 +107,15 @@ $_SESSION['username']=null;
 
 
 						<div>
-							<?php
-							if($_SESSION['flag'] == 1)
-							{
-							echo "
-							<span class='txt1' style='color:red;'>
-								Incorrect Username or Password
-							</span>";
-							$_SESSION['flag'] =0;
-						}
-						elseif (!isset($_SESSION['flag'])) {
-							$_SESSION['flag'] =0;
-						}
-							?>
+
+							<?php if (isset($error5)): ?>
+    <div class="form-errors">
+        <?php foreach($error5 as $error): ?>
+            <span class='txt1' style='color:red;'>&nbsp;<?php echo $error ?></span>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
 						</div>
 					</div>
 

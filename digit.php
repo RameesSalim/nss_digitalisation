@@ -4,11 +4,58 @@
 
 $con = mysqli_connect("localhost","root","admin","NSS");
 
+//Values
+
+/*$_SESSION['adno']=$adno ="";
+    	$_SESSION['name']=$name ="";
+    	$_SESSION['parent_name']=$parent_name ="";
+    	$_SESSION['parent_occup']=$parent_occup ="";
+    	$_SESSION['school']=$school ="";
+    	$_SESSION['doa']=$doa ="";
+    	$_SESSION['dob']=$dob="";
+    	$_SESSION['religion']=$religion="";
+    	$_SESSION['scst']=$scst="";
+    	$_SESSION['soa']=$soa ="";
+    	$_SESSION['sol']=$sol ="";
+    	$_SESSION['dol']=$dol="";
+    	$_SESSION['tca']=$tca ="";
+    	$_SESSION['tcl']=$tcl ="";
+    	$_SESSION['reason']=$reason ="";
+    	$_SESSION['dov']=$dov ="";
+    	$_SESSION['remarks']=$remarks ="";*/
+    	$_SESSION['data']=array();
+
+
 
 if(!isset($_SESSION['username']))
 {
 	header("Location: index.php");
 }
+if(isset($_POST['submit']))
+{
+	$_SESSION['register']= $_POST['register'];
+	echo $_POST['register'];
+	$query = "SELECT `Adno`, `name`, `parent_name`, `parent_occup`, `school`, `doa`, `dob`, `religion`, `scst`, `soa`, `sol`, `dol`, `tca`, `tcl`, `reason`, `dov`, `remarks` FROM `TABLE 2` WHERE `Adno` =".$_SESSION['register'];
+	echo $_SESSION['register'];
+	$result = $con->query($query);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+
+    	echo $row['name'];
+    	$_SESSION['data'] =array("adno"=>$row["Adno"],"name"=>$row["name"],"parent_name"=>$row["parent_name"],"parent_occup"=>$row["parent_occup"],"school"=>$row["school"],"doa"=>$row["doa"],"dob"=>$row["dob"],"religion"=>$row["religion"],"scst"=>$row["scst"],"soa"=>$row["soa"],"sol"=>$row["sol"],"dol"=>$row["dol"],"tca"=>$row["tca"],"tcl"=>$row["tcl"],"reason"=>$row["reason"],"dov"=>$row["dov"],"remarks"=>$row["remarks"]);
+
+    	header("Location: result.php");
+        
+     }
+ }
+ else
+ {
+ 	$error1 = array("Data not found");
+ }
+}
+
 
 ?>
 
@@ -48,7 +95,8 @@ if(!isset($_SESSION['username']))
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w" action="result.php" method="POST">
+				<form class="login100-form validate-form flex-sb flex-w" action="" method="POST">
+
 					<span class="login100-form-title p-b-51">						<?php echo "Logged as {$_SESSION['username']} " ?>
 					</span>
 					
@@ -60,7 +108,16 @@ if(!isset($_SESSION['username']))
 					
 					<div class="flex-sb-m w-full p-t-3 p-b-24">
 
+					<div>
+						<?php if (isset($error1)): ?>
+    <div class="form-errors">
+        <?php foreach($error1 as $error): ?>
+            <span class='txt1' style='color:red;'>&nbsp;<?php echo $error ?></span>
+        <?php endforeach;$error1=null; ?>
+    </div>
+<?php endif; ?>
 
+</div>
 					</div>
 
 					<div class="container-login100-form-btn m-t-17">

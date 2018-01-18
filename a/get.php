@@ -15,7 +15,7 @@ if(!isset($_SESSION['username']))
 if(isset($_POST['submit']))
 {
 	$register= $_POST['register'];
-	$query = "SELECT `Adno`, `name`, `parent_name`, `parent_occup`, `school`, `doa`, `dob`, `religion`, `scst`, `soa`, `sol`, `dol`, `tca`, `tcl`, `reason`, `dov`, `remarks` FROM `TABLE 1` WHERE `Adno` = $register";
+	$query = "SELECT `Adno`, `name`, `parent_name`, `parent_occup`, `school`, `doa`, `dob`, `religion`, `scst`, `soa`, `sol`, `dol`, `tca`, `tcl`, `reason`, `dov`, `remarks` FROM `TABLE 2` WHERE `Adno` = $register";
 	$result = $con->query($query);
 
 if ($result->num_rows > 0) {

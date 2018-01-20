@@ -12,6 +12,7 @@ if(!isset($_SESSION['username']))
 {
 	header("Location: index.php");
 }
+
 elseif(!isset($_SESSION['data']['adno']) || $_SESSION['data']['adno'] == "")
 {
 	header("Location: digit.php");

@@ -64,10 +64,10 @@ $i=$_SESSION['i'];
 								<b>DATAS :<?php echo "".$_SESSION['i']."</b>"; ?>
 							</div>
 							<div class="cell">
-								<button class="btn btn-primary">Edit</button>
+								&nbsp;
 							</div>
 							<div class="cell">
-								<button class="btn btn-primary">Print</button>
+								<a href="1.php"><button class="btn btn-primary">Get Data</button></a>
 							</div>
 						</div>
 

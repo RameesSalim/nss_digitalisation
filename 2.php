@@ -33,11 +33,12 @@ if(!isset($_SESSION['username']))
 }
 if(isset($_GET['submit']))
 {
-	$_SESSION['year']= $_GET['register'];
+	$_SESSION['year']= mysqli_real_escape_string($con,$_GET['register']);
 	$query = "SELECT `Adno`, `name`, `parent_name`, `parent_occup`, `school`, `doa`, `dob`, `religion`, `scst`, `soa`, `sol`, `dol`, `tca`, `tcl`, `reason`, `dov`, `remarks` FROM `TABLE 2` WHERE `doa` LIKE '%".$_SESSION['year']."%'";
 	$result = mysqli_query($con,$query);
 
 $i=0;$n=0;
+if ($result->num_rows > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result))
      {
@@ -47,16 +48,18 @@ $i=0;$n=0;
 /*    	$_SESSION[$i] =array("adno"=>$row["Adno"],"name"=>$row["name"],"parent_name"=>$row["parent_name"],"parent_occup"=>$row["parent_occup"],"school"=>$row["school"],"doa"=>$row["doa"],"dob"=>$row["dob"],"religion"=>$row["religion"],"scst"=>$row["scst"],"soa"=>$row["soa"],"sol"=>$row["sol"],"dol"=>$row["dol"],"tca"=>$row["tca"],"tcl"=>$row["tcl"],"reason"=>$row["reason"],"dov"=>$row["dov"],"remarks"=>$row["remarks"]);*/
     	      
          
-     
+     }
+
+ } else
+ {
+ 	$error1 = array("Data not found");
  }
+ 
  $_SESSION['i']= $i;
  echo $i;
 
 }
- else
- {
- 	$error1 = array("Data not found");
- }
+
 if(isset($_SESSION['i']))
 {
 	while($n <= $i)

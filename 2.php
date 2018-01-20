@@ -2,23 +2,90 @@
 <?php ob_start(); ?>
 <?php 
 
+$con = mysqli_connect("localhost","root","admin","NSS");
+
+//Values
+
+/*$_SESSION['adno']=$adno ="";
+    	$_SESSION['name']=$name ="";
+    	$_SESSION['parent_name']=$parent_name ="";
+    	$_SESSION['parent_occup']=$parent_occup ="";
+    	$_SESSION['school']=$school ="";
+    	$_SESSION['doa']=$doa ="";
+    	$_SESSION['dob']=$dob="";
+    	$_SESSION['religion']=$religion="";
+    	$_SESSION['scst']=$scst="";
+    	$_SESSION['soa']=$soa ="";
+    	$_SESSION['sol']=$sol ="";
+    	$_SESSION['dol']=$dol="";
+    	$_SESSION['tca']=$tca ="";
+    	$_SESSION['tcl']=$tcl ="";
+    	$_SESSION['reason']=$reason ="";
+    	$_SESSION['dov']=$dov ="";
+    	$_SESSION['remarks']=$remarks ="";*/
+    	$_SESSION['data']=array();
+$_SESSION['i']=null;
 
 
 if(!isset($_SESSION['username']))
 {
 	header("Location: index.php");
 }
-
-
-if(isset($_POST['number']))
+if(isset($_GET['submit']))
 {
-	header("Location:1.php");
+	$_SESSION['year']= $_GET['register'];
+	$query = "SELECT `Adno`, `name`, `parent_name`, `parent_occup`, `school`, `doa`, `dob`, `religion`, `scst`, `soa`, `sol`, `dol`, `tca`, `tcl`, `reason`, `dov`, `remarks` FROM `TABLE 2` WHERE `doa` LIKE '%".$_SESSION['year']."%'";
+	$result = mysqli_query($con,$query);
+
+$i=0;$n=0;
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result))
+     {
+    	$data[]=array("adno"=>$row["Adno"],"name"=>$row["name"],"parent_name"=>$row["parent_name"],"parent_occup"=>$row["parent_occup"],"school"=>$row["school"],"doa"=>$row["doa"],"dob"=>$row["dob"],"religion"=>$row["religion"],"scst"=>$row["scst"],"soa"=>$row["soa"],"sol"=>$row["sol"],"dol"=>$row["dol"],"tca"=>$row["tca"],"tcl"=>$row["tcl"],"reason"=>$row["reason"],"dov"=>$row["dov"],"remarks"=>$row["remarks"]);
+    	$i++;
+
+/*    	$_SESSION[$i] =array("adno"=>$row["Adno"],"name"=>$row["name"],"parent_name"=>$row["parent_name"],"parent_occup"=>$row["parent_occup"],"school"=>$row["school"],"doa"=>$row["doa"],"dob"=>$row["dob"],"religion"=>$row["religion"],"scst"=>$row["scst"],"soa"=>$row["soa"],"sol"=>$row["sol"],"dol"=>$row["dol"],"tca"=>$row["tca"],"tcl"=>$row["tcl"],"reason"=>$row["reason"],"dov"=>$row["dov"],"remarks"=>$row["remarks"]);*/
+    	      
+         
+     
+ }
+ $_SESSION['i']= $i;
+ echo $i;
+
 }
-elseif(isset($_POST['year']))
+ else
+ {
+ 	$error1 = array("Data not found");
+ }
+if(isset($_SESSION['i']))
 {
-	header("Location:2.php");
+	while($n <= $i)
+{
+	$_SESSION['adno'][$n]=$data[$n]['adno'];
+	$_SESSION['name'][$n]=$data[$n]['name'];
+	$_SESSION['parent_name'][$n]=$data[$n]['parent_name'];
+	$_SESSION['parent_occup'][$n]=$data[$n]['parent_occup'];
+	$_SESSION['school'][$n]=$data[$n]['school'];
+	$_SESSION['doa'][$n]=$data[$n]['doa'];
+	$_SESSION['dob'][$n]=$data[$n]['dob'];
+	$_SESSION['religion'][$n]=$data[$n]['religion'];
+	$_SESSION['scst'][$n]=$data[$n]['scst'];
+	$_SESSION['soa'][$n]=$data[$n]['soa'];
+	$_SESSION['sol'][$n]=$data[$n]['sol'];
+	$_SESSION['dol'][$n]=$data[$n]['dol'];
+	$_SESSION['tca'][$n]=$data[$n]['tca'];
+	$_SESSION['tcl'][$n]=$data[$n]['tcl'];
+	$_SESSION['reason'][$n]=$data[$n]['reason'];
+	$_SESSION['dov'][$n]=$data[$n]['dov'];
+	$_SESSION['remarks'][$n]=$data[$n]['remarks'];
+	$n++;
+
 }
+ header("Location: result_display.php");
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,39 +118,53 @@ elseif(isset($_POST['year']))
 </head>
 <body>
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-
-            <a class="btn btn-outline-primary" href="logout.php">Logout</a>
+      <a href="digit.php"><h5 class="my-0 mr-md-auto font-weight-normal">Back</h5></a>
       <nav class="my-2 my-md-0 mr-md-3">
 
+        <a class="p-2 text-dark" href="#">&nbsp;</a>
+        <a class="p-2 text-dark" href="#">&nbsp;</a>
       </nav>
-
+      <a class="btn btn-outline-primary " href="logout.php">Logout</a>
     </div>
 
 	<div class="limiter">
-		<div class="container-login100" style="min-height: 65vh;">
+		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w" action="" method="POST">
+				<form class="login100-form validate-form flex-sb flex-w" action="" method="GET">
 
 					<span class="login100-form-title p-b-51">						<?php echo "Logged as {$_SESSION['username']} " ?>
 					</span>
-
 					
-<form action="">
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Year is Required">
+						<input class="input100" type="text" name="register" placeholder="Enter Year">
+						<span class="focus-input100"></span>
+					</div>
+					
+					
+					<div class="flex-sb-m w-full p-t-3 p-b-24">
+
+					<div>
+						<?php if (isset($error1)): ?>
+    <div class="form-errors">
+        <?php foreach($error1 as $error): ?>
+            <span class='txt1' style='color:red;'>&nbsp;<?php echo $error ?></span>
+        <?php endforeach;$error1=null; ?>
+    </div>
+<?php endif; ?>
+
+</div>
+					</div>
 
 					<div class="container-login100-form-btn m-t-17">
-
-						<button class="login100-form-btn" name="number">
-
-							Search by Admission Number
+						<button class="login100-form-btn" name="submit">
+							Submit
 						</button>
 					</div>
-										<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn" name="year">
-							Search by Year
-						</button>
+										<div class="flex-sb-m w-full p-t-3 p-b-24">
+
+
+
 					</div>
-										
-										
 
 				</form>
 			</div>

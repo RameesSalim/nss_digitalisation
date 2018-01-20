@@ -2,7 +2,7 @@
 <?php 
 session_start();
 ?>
-d
+
 <!-- PHP Code  -->
 <?php
 ob_start();

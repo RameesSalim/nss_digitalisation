@@ -47,6 +47,15 @@ elseif(!isset($_SESSION['data']['adno']) || $_SESSION['data']['adno'] == "")
 <!--===============================================================================================-->
 </head>
 <body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 border-bottom box-shadow" style="background-color:#c4d3f6;margin-bottom: 0px;">
+      <a href="1.php"><h5 class="my-0 mr-md-auto font-weight-normal">Back</h5></a>
+      <nav class="my-2 my-md-0 mr-md-3" style="background:#c4d3f6;">
+
+        <a class="p-2 text-dark" href="#">&nbsp;</a>
+        <a class="p-2 text-dark" href="#">&nbsp;</a>
+      </nav>
+      <a class="btn btn-outline-primary " href="logout.php">Logout</a>
+    </div>
 	
 	<div class="limiter">
 		<div class="container-table100">

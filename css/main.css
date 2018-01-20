@@ -146,8 +146,8 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 15px;
-  
+  padding-left: 15px;
+  padding-right:15px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;;

@@ -2,7 +2,8 @@
 <?php ob_start(); ?>
 <?php 
 
-$con = mysqli_connect("localhost","root","admin","NSS");
+include "config/db.php";
+
 
 //Values
 

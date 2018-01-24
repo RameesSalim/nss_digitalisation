@@ -4,8 +4,7 @@
 <?php
 
 session_start();
-$con = mysqli_connect("localhost","root","admin","NSS");
-
+include "../config/db.php";
 // Check connection
 if (mysqli_connect_errno())
 {

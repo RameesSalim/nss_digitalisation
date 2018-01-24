@@ -109,7 +109,7 @@ elseif(!isset($_SESSION['data']['adno']) || $_SESSION['data']['adno'] == "")
 						</div>
 												<div class="row">
 							<div class="cell" data-title="Full Name">
-								Name of parent or Guardian and the relationship of the Guardian : :
+								Name of parent or Guardian and the relationship of the Guardian : 
 							</div>
 							<div class="cell" data-title="Age">
 							

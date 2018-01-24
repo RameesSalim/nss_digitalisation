@@ -5,7 +5,7 @@
 
 <?php 
 
-$con = mysqli_connect("localhost","root","admin","NSS");
+include "config/db.php";
 $_SESSION['flag_n']=0;
 
 

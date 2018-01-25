@@ -2,6 +2,11 @@
 session_start();
 require_once __DIR__ . '/vendor/autoload.php';
 
+if(!isset($_SESSION['username']))
+{
+	header("Location: index.php");
+}
+
 $defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
 $fontDirs = $defaultConfig['fontDir'];
 

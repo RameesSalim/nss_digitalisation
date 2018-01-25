@@ -125,7 +125,7 @@ $data .= '
 			<p class="a">Name</p>
 		</td>
 		<td width="55%">
-			<b>:'.$_SESSION['data']['name'].'</b>
+			<b>:'.ucwords($_SESSION['data']['name']).'</b>
 		</td>
 	</tr>';
 	$data .= '
@@ -149,7 +149,7 @@ $data .= '
 			<p class="a">Name of parent or Guardian and the relationship of the Guardian </p>
 		</td>
 		<td width="55%">
-			<b>:'.$_SESSION['data']['parent_name'].'</b>
+			<b>:'.ucwords($_SESSION['data']['parent_name']).'</b>
 		</td>
 	</tr>';
 	$data .= '
@@ -173,7 +173,7 @@ $data .= '
 			<p class="a">Occupation of parent or Guardian and his residence </p>
 		</td>
 		<td width="55%">
-			<b>:'.$_SESSION['data']['parent_occup'].'</b>
+			<b>:'.ucfirst($_SESSION['data']['parent_occup']).'</b>
 		</td>
 	</tr>';
 	$data .= '
@@ -197,7 +197,7 @@ $data .= '
 			<p class="a">School previuosly attended the Periods spent in each Std </p>
 		</td>
 		<td width="55%">
-			<b>:'.$_SESSION['data']['school'].'</b>
+			<b>:'.ucwords($_SESSION['data']['school']).'</b>
 		</td>
 	</tr>';
 	$data .= '

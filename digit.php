@@ -18,6 +18,10 @@ elseif(isset($_POST['year']))
 {
 	header("Location:2.php");
 }
+elseif(isset($_POST['all']))
+{
+	header("Location:3.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,6 +84,11 @@ elseif(isset($_POST['year']))
 										<div class="container-login100-form-btn m-t-17">
 						<button class="login100-form-btn" name="year">
 							Search by Year
+						</button>
+					</div>
+															<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn" name="all">
+							All Data
 						</button>
 					</div>
 										

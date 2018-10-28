@@ -74,6 +74,7 @@ if ($result->num_rows > 0) {
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!-- 		<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"> -->
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
